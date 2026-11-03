@@ -1,0 +1,51 @@
+#vids-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 120px);
+    justify-content: space-between;
+    gap: 20px 12px;
+}
+
+.viddiv {
+    display: block;
+    width: 120px;
+    text-decoration: none;
+    color: var(--pico-color);
+}
+
+.viddiv:hover .vidname {
+    text-decoration: underline;
+}
+
+.vidBox {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 4px;
+}
+
+.vidtn {
+    display: block;
+    width: 120px;
+    aspect-ratio: 16 / 9;
+    height: auto;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.vidname {
+    margin: 0;
+    font-size: 0.75rem;
+    line-height: 1.3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #C2C7D0;
+}
+
+.vid-search {
+    font-size: 0.9rem;
+    max-width: 25%;
+    height: 4.5vh !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}

@@ -1,0 +1,51 @@
+<!doctype html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <title>DOM videos</title>
+</head>
+
+<script type="module">
+  import { createApp, reactive } from 'https://unpkg.com/petite-vue?module'
+  import vidList from './vids.json' with { type: "json" };
+
+  const cdata = reactive(vidList.filter(v => v.tn != null && v.title != "[Deleted video]" && v.title != "[Private video]"))
+
+  function VidDiv(props) {
+    return { $template: '#vid-template', data: props.data }
+  }
+
+  createApp({ cdata, VidDiv, search: "" }).mount()
+</script>
+
+<template id="vid-template">
+  <a :href=" 'https://www.youtube.com/watch?v=' + data.id" class="viddiv">
+    <div class="vidBox">
+      <img class="vidtn" loading="lazy" :src="data.tn" />
+      <p class="vidname">{{data.title}}</p>
+    </div>
+  </a>
+</template>
+
+<body>
+  <main class="container">
+    <div>
+      <h1>Videos</h1>
+      <p>Videos from the dualityofmusic playlist</p>
+      <input v-scope type="search" v-model="search" placeholder="Search" class="vid-search"/>
+      <hr>
+    </div>
+    <div id="vids-container">
+      <div 
+        v-scope="VidDiv({ data: vid })" 
+        v-for="(vid, index) in cdata" :key="vid.id" 
+        v-show="vid.title.toLowerCase().includes(search.toLowerCase())">
+      </div>
+    </div>
+  </main>
+</body>
+
+</html>
