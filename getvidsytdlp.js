@@ -37,8 +37,7 @@ async function getVideos() {
             tn: thumb,
             channel: vid.channel,
             views: vid.view_count,
-            length: vid.duration_string,
-            adder: vid.playlist_uploader
+            length: vid.duration_string
         })
     }
 
